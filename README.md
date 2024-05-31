@@ -1,5 +1,5 @@
 # Carbon-Emission-Analysis
-![](D7123FA9-E46F-474F-A6CC21231555057D_source)
+![](https://assets.terrapass.com/wp-content/uploads/2022/08/carbon-dioxide-emissions-from-electricity-photo-of-factory-smoke.jpg)
 
 This report aims to analyze carbon emissions to examine the carbon footprint across various industries. We aim to identify sectors with the highest levels of emissions by analyzing them across countries and years, as well as to uncover trends.
 
