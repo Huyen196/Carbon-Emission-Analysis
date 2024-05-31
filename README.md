@@ -40,3 +40,17 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | 3  | "Forest and Paper Products - Forestry, Timber, Pulp and Paper, Rubber" | 
 | 4  | "Mining - Iron, Aluminum, Other Metals"                                | 
 | 5  | "Pharmaceuticals, Biotechnology & Life Sciences"                       | 
+
+## Analysis
+### 1. Top 5 products contribute the most to carbon emissions
+
+1. Code
+    select company_id, country_id, product_name, carbon_footprint_pcf from product_emissions order by carbon_footprint_pcf desc limit 5
+
+| product_name                                                       | carbon_footprint_pcf | 
+| -----------------------------------------------------------------: | -------------------: | 
+| Wind Turbine G128 5 Megawats                                       | 3718044              | 
+| Wind Turbine G132 5 Megawats                                       | 3276187              | 
+| Wind Turbine G114 2 Megawats                                       | 1532608              | 
+| Wind Turbine G90 2 Megawats                                        | 1251625              | 
+| Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. | 191687               | 
