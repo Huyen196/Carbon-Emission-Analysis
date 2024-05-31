@@ -1,4 +1,5 @@
 # Carbon-Emission-Analysis
+![]D7123FA9-E46F-474F-A6CC21231555057D_source.webp
 This report aims to analyze carbon emissions to examine the carbon footprint across various industries. We aim to identify sectors with the highest levels of emissions by analyzing them across countries and years, as well as to uncover trends.
 
 ## Mô tả dữ liệu
