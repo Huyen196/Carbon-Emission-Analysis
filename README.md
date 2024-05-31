@@ -45,7 +45,11 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 ### 1. Top 5 products contribute the most to carbon emissions
 
 1. Code
-    select company_id, country_id, product_name, carbon_footprint_pcf from product_emissions order by carbon_footprint_pcf desc limit 5
+   
+    Select company_id, country_id, product_name, carbon_footprint_pcf
+    from product_emissions
+    order by carbon_footprint_pcf desc
+    limit 5
 
 | product_name                                                       | carbon_footprint_pcf | 
 | -----------------------------------------------------------------: | -------------------: | 
