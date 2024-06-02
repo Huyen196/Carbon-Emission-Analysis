@@ -136,3 +136,29 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | Volkswagen AG                          | 265718       | 
 | "Hino Motors, Ltd."                    | 191687       | 
 | Arcelor Mittal                         | 167007       | 
+
+### 5. The countries with the highest contribution to carbon emissions
+
+#### Code
+
+	select country_name, sum(total) as total_carbon
+	from
+		  (select cn.country_name, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
+		  from countries as cn
+		  left join product_emissions as p 
+		  on cn.id = p.country_id	
+		  group by p.country_id, p.carbon_footprint_pcf
+		  order by p.carbon_footprint_pcf desc) as temp
+	group by country_name
+	order by total_carbon desc
+	limit 5
+
+ #### Result
+
+| country_name | total_carbon | 
+| -----------: | -----------: | 
+| Spain        | 9785971      | 
+| Germany      | 1744983      | 
+| Japan        | 500392       | 
+| USA          | 380132       | 
+| Brazil       | 167578       | 
