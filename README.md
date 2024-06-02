@@ -44,14 +44,15 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 ## Analysis
 ### 1. Top 5 products contribute the most to carbon emissions
 
-1. Code
+#### Code
    
     Select company_id, country_id, product_name, carbon_footprint_pcf
     from product_emissions
     order by carbon_footprint_pcf desc
     limit 5
 
-2. Result
+
+#### Result
 
 | product_name                                                       | carbon_footprint_pcf | 
 | -----------------------------------------------------------------: | -------------------: | 
@@ -61,4 +62,16 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | Wind Turbine G90 2 Megawats                                        | 1251625              | 
 | Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. | 191687               | 
 
-### 2. 
+### 2. The industry groups of these products
+
+#### Code
+
+    select industry_group
+from
+	  (select i.industry_group, p.industry_group_id, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
+	  from industry_groups as i
+	  left join product_emissions as p 
+	  on i.id = p.industry_group_id	
+	  group by p.industry_group_id, p.carbon_footprint_pcf
+	  order by p.carbon_footprint_pcf desc) as temp
+limit 5
