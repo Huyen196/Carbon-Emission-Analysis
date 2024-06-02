@@ -162,3 +162,23 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | Japan        | 500392       | 
 | USA          | 380132       | 
 | Brazil       | 167578       | 
+
+### 6. The trend of carbon footprints (PCFs) over the years
+
+#### Code
+
+	select year, sum(carbon_footprint_pcf) as total_carbon
+	from product_emissions
+	group by year
+
+#### Result
+
+| year | total_carbon | 
+| ---: | -----------: | 
+| 2013 | 503857       | 
+| 2014 | 624226       | 
+| 2015 | 10840415     | 
+| 2016 | 1640182      | 
+| 2017 | 340271       | 
+
+
