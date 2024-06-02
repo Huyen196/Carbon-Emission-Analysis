@@ -75,3 +75,20 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 		group by p.industry_group_id, p.carbon_footprint_pcf
 		order by p.carbon_footprint_pcf desc) as temp
 	limit 5
+
+#### Result
+
+| industry_group                     | 
+| ---------------------------------: | 
+| Electrical Equipment and Machinery | 
+| Electrical Equipment and Machinery | 
+| Electrical Equipment and Machinery | 
+| Electrical Equipment and Machinery | 
+| Automobiles & Components           | 
+
+### 3. The industries with the highest contribution to carbon emissions
+
+#### Code
+
+
+ 
