@@ -126,3 +126,13 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 	group by company_name
 	order by total_carbon desc
 	limit 5
+
+#### Result
+
+| company_name                           | total_carbon | 
+| -------------------------------------: | -----------: | 
+| "Gamesa Corporación Tecnológica, S.A." | 9778464      | 
+| Daimler AG                             | 1478300      | 
+| Volkswagen AG                          | 265718       | 
+| "Hino Motors, Ltd."                    | 191687       | 
+| Arcelor Mittal                         | 167007       | 
