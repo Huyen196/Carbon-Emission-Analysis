@@ -101,4 +101,28 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 	order by total_carbon desc
 	limit 5
 
- 
+ #### Result 
+
+| industry_group                     | total_carbon | 
+| ---------------------------------: | -----------: | 
+| Electrical Equipment and Machinery | 9801558      | 
+| Automobiles & Components           | 2076022      | 
+| Materials                          | 416860       | 
+| Capital Goods                      | 255104       | 
+| Technology Hardware & Equipment    | 204307       | 
+
+### 4. The companies with the highest contribution to carbon emissions
+
+#### Code
+
+	select company_name, sum(total) as total_carbon
+	from
+		  (select c.company_name, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
+		  from companies as c
+		  left join product_emissions as p 
+		  on c.id = p.company_id	
+		  group by p.company_id, p.carbon_footprint_pcf
+		  order by p.carbon_footprint_pcf desc) as temp
+	group by company_name
+	order by total_carbon desc
+	limit 5
