@@ -89,6 +89,16 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 ### 3. The industries with the highest contribution to carbon emissions
 
 #### Code
-
+	select industry_group, sum(total) as total_carbon
+	from
+		  (select i.industry_group, p.industry_group_id, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
+		  from industry_groups as i
+		  left join product_emissions as p 
+		  on i.id = p.industry_group_id	
+		  group by p.industry_group_id, p.carbon_footprint_pcf
+		  order by p.carbon_footprint_pcf desc) as temp
+	group by industry_group
+	order by total_carbon desc
+	limit 5
 
  
