@@ -51,6 +51,8 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
     order by carbon_footprint_pcf desc
     limit 5
 
+2. Result
+
 | product_name                                                       | carbon_footprint_pcf | 
 | -----------------------------------------------------------------: | -------------------: | 
 | Wind Turbine G128 5 Megawats                                       | 3718044              | 
@@ -58,3 +60,5 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | Wind Turbine G114 2 Megawats                                       | 1532608              | 
 | Wind Turbine G90 2 Megawats                                        | 1251625              | 
 | Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. | 191687               | 
+
+### 2. 
