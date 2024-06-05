@@ -181,4 +181,14 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | 2016 | 1640182      | 
 | 2017 | 340271       | 
 
+### 7. 
 
+#### Code
+
+	select industry_group, year, sum(carbon_footprint_pcf) as total_carbon
+from
+(select i.industry_group, p.year, p.carbon_footprint_pcf
+from product_emissions as p
+left join industry_groups as i
+on p.industry_group_id = i.id) as trial
+group by industry_group, year
