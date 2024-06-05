@@ -66,6 +66,31 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 
 #### Code
 
+	select industry_group, product_name
+	from
+		(select i.industry_group, p.product_name, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
+		from industry_groups as i
+		left join product_emissions as p 
+		on i.id = p.industry_group_id	
+		group by p.industry_group_id, p.carbon_footprint_pcf
+		order by p.carbon_footprint_pcf desc) as temp
+		order by total desc
+	limit 5
+
+#### Result
+
+| industry_group                     | product_name                                                       | 
+| ---------------------------------: | -----------------------------------------------------------------: | 
+| Electrical Equipment and Machinery | Wind Turbine G128 5 Megawats                                       | 
+| Electrical Equipment and Machinery | Wind Turbine G132 5 Megawats                                       | 
+| Electrical Equipment and Machinery | Wind Turbine G114 2 Megawats                                       | 
+| Electrical Equipment and Machinery | Wind Turbine G90 2 Megawats                                        | 
+| Automobiles & Components           | Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. | 
+
+### 3. The industries with the highest contribution to carbon emissions
+
+#### Code
+
 	select industry_group, sum(total) as total_carbon
 	from
 		(select i.industry_group, p.industry_group_id, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
@@ -78,7 +103,7 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 	order by total_carbon desc
 	limit 10
 
-#### Result
+ #### Result 
 
 | industry_group                                   | total_carbon | 
 | -----------------------------------------------: | -----------: | 
@@ -92,31 +117,6 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | Chemicals                                        | 44933        | 
 | Software & Services                              | 23679        | 
 | Media                                            | 11451        | 
-
-### 3. The industries with the highest contribution to carbon emissions
-
-#### Code
-	select industry_group, sum(total) as total_carbon
-	from
-		  (select i.industry_group, p.industry_group_id, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
-		  from industry_groups as i
-		  left join product_emissions as p 
-		  on i.id = p.industry_group_id	
-		  group by p.industry_group_id, p.carbon_footprint_pcf
-		  order by p.carbon_footprint_pcf desc) as temp
-	group by industry_group
-	order by total_carbon desc
-	limit 5
-
- #### Result 
-
-| industry_group                     | total_carbon | 
-| ---------------------------------: | -----------: | 
-| Electrical Equipment and Machinery | 9801558      | 
-| Automobiles & Components           | 2076022      | 
-| Materials                          | 416860       | 
-| Capital Goods                      | 255104       | 
-| Technology Hardware & Equipment    | 204307       | 
 
 ### 4. The companies with the highest contribution to carbon emissions
 
@@ -188,7 +188,7 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 | 2016 | 1640182      | 
 | 2017 | 340271       | 
 
-### 7. 
+### 7. Industry groups has demonstrated the most notable decrease in carbon footprints (PCFs) over time
 
 #### Code
 
@@ -200,3 +200,7 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 		on p.industry_group_id = i.id) as trial
 	group by industry_group, year
 	order by industry_group, year, total_carbon desc
+
+## Conclusion
+
+The most industry group which contribute the most to carbon emissions is **Electrical Equipment and Machinery**. In top 5 of products, Electrical Equipment and Machinery has 4 products contribute the most to carbon emissions (Wind Turbine). After that is **Automobiles & Components** with Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. Although Automobiles & Components in the second, the total carbon is 2,076,022 while Electrical Equipment and Machinery is 9,801,558 (4.7 times higher), even higher than the total carbon of all industry groups on top 10
