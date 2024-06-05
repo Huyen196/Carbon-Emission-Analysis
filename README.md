@@ -66,7 +66,7 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 
 #### Code
 
-    select industry_group
+	select industry_group, sum(total) as total_carbon
 	from
 		(select i.industry_group, p.industry_group_id, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
 		from industry_groups as i
@@ -74,7 +74,9 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 		on i.id = p.industry_group_id	
 		group by p.industry_group_id, p.carbon_footprint_pcf
 		order by p.carbon_footprint_pcf desc) as temp
-	limit 5
+	group by industry_group
+	order by total_carbon desc
+	limit 10
 
 #### Result
 
