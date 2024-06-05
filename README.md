@@ -80,13 +80,18 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 
 #### Result
 
-| industry_group                     | 
-| ---------------------------------: | 
-| Electrical Equipment and Machinery | 
-| Electrical Equipment and Machinery | 
-| Electrical Equipment and Machinery | 
-| Electrical Equipment and Machinery | 
-| Automobiles & Components           | 
+| industry_group                                   | total_carbon | 
+| -----------------------------------------------: | -----------: | 
+| Electrical Equipment and Machinery               | 9801558      | 
+| Automobiles & Components                         | 2076022      | 
+| Materials                                        | 416860       | 
+| Capital Goods                                    | 255104       | 
+| Technology Hardware & Equipment                  | 204307       | 
+| "Food, Beverage & Tobacco"                       | 107653       | 
+| "Pharmaceuticals, Biotechnology & Life Sciences" | 72486        | 
+| Chemicals                                        | 44933        | 
+| Software & Services                              | 23679        | 
+| Media                                            | 11451        | 
 
 ### 3. The industries with the highest contribution to carbon emissions
 
