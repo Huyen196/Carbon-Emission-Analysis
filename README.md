@@ -122,14 +122,16 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 
 #### Code
 
-	select company_name, sum(total) as total_carbon
+	select company_name, industry_group, sum(total) as total_carbon
 	from
-		  (select c.company_name, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
-		  from companies as c
-		  left join product_emissions as p 
-		  on c.id = p.company_id	
-		  group by p.company_id, p.carbon_footprint_pcf
-		  order by p.carbon_footprint_pcf desc) as temp
+		(select c.company_name, p.company_id, p.year, p.country_id, i.industry_group, p.carbon_footprint_pcf as total
+		from product_emissions as p
+		left join companies as c
+		on p.company_id = c.id
+		left join industry_groups as i
+		on p.industry_group_id = i.id
+		group by p.company_id, p.carbon_footprint_pcf
+		order by p.carbon_footprint_pcf desc) as temp
 	group by company_name
 	order by total_carbon desc
 	limit 5
@@ -204,3 +206,5 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 ## Conclusion
 
 The most industry group which contribute the most to carbon emissions is **Electrical Equipment and Machinery**. In top 5 of products, Electrical Equipment and Machinery has 4 products contribute the most to carbon emissions (Wind Turbine). After that is **Automobiles & Components** with Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. Although Automobiles & Components in the second, the total carbon is 2,076,022 while Electrical Equipment and Machinery is 9,801,558 (4.7 times higher), even higher than the total carbon of all industry groups on top 10
+
+
