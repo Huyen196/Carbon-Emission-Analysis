@@ -1,4 +1,4 @@
-![image](https://github.com/Huyen196/Carbon-Emission-Analysis/assets/170104292/99e718c2-7681-42cf-802b-faa9ec2a1df9)# Carbon-Emission-Analysis
+# Carbon-Emission-Analysis
 ![](https://assets.terrapass.com/wp-content/uploads/2022/08/carbon-dioxide-emissions-from-electricity-photo-of-factory-smoke.jpg)
 
 Source: Kamil Petran 
