@@ -1,4 +1,4 @@
-# Carbon-Emission-Analysis
+![image](https://github.com/Huyen196/Carbon-Emission-Analysis/assets/170104292/99e718c2-7681-42cf-802b-faa9ec2a1df9)# Carbon-Emission-Analysis
 ![](https://assets.terrapass.com/wp-content/uploads/2022/08/carbon-dioxide-emissions-from-electricity-photo-of-factory-smoke.jpg)
 
 Source: Kamil Petran 
@@ -138,39 +138,47 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 
 #### Result
 
-| company_name                           | total_carbon | 
-| -------------------------------------: | -----------: | 
-| "Gamesa Corporación Tecnológica, S.A." | 9778464      | 
-| Daimler AG                             | 1478300      | 
-| Volkswagen AG                          | 265718       | 
-| "Hino Motors, Ltd."                    | 191687       | 
-| Arcelor Mittal                         | 167007       | 
+| company_name                           | industry_group                     | total_carbon | 
+| -------------------------------------: | ---------------------------------: | -----------: | 
+| "Gamesa Corporación Tecnológica, S.A." | Electrical Equipment and Machinery | 9778464      | 
+| Daimler AG                             | Automobiles & Components           | 1478300      | 
+| Volkswagen AG                          | Automobiles & Components           | 265718       | 
+| "Hino Motors, Ltd."                    | Automobiles & Components           | 191687       | 
+| Arcelor Mittal                         | Materials                          | 167007       | 
+
 
 ### 5. The countries with the highest contribution to carbon emissions
 
 #### Code
 
-	select country_name, sum(total) as total_carbon
-	from
-		(select cn.country_name, p.company_id, p.year, p.country_id, p.carbon_footprint_pcf as total
-		from countries as cn
-		left join product_emissions as p 
-		on cn.id = p.country_id	
-		group by p.country_id, p.carbon_footprint_pcf
-		order by p.carbon_footprint_pcf desc) as temp
-	group by country_name
-	order by total_carbon desc
-	limit 5
+	select country_name, industry_group, sum(total) as total_carbon
+		from
+			(select cn.country_name, p.company_id, i.industry_group, p.year, p.country_id, p.carbon_footprint_pcf as total
+			from product_emissions as p
+			left join countries as cn
+			on p.country_id = cn.id
+			left join industry_groups as i
+			on p.industry_group_id = i.id
+			group by p.country_id, p.carbon_footprint_pcf
+			order by p.carbon_footprint_pcf desc) as temp
+		group by country_name
+		order by total_carbon desc
+		limit 10
 
  #### Result
 
-| country_name | total_carbon | 
-| -----------: | -----------: | 
-| Spain        | 9785971      | 
-| Germany      | 1744983      | 
-| Japan        | 500392       | 
-| USA          | 380132       | 
-| Brazil       | 167578       | 
+| country_name | industry_group                                   | total_carbon | 
+| -----------: | -----------------------------------------------: | -----------: | 
+| Spain        | Electrical Equipment and Machinery               | 9785971      | 
+| Germany      | Automobiles & Components                         | 1744983      | 
+| Japan        | Automobiles & Components                         | 500392       | 
+| USA          | "Pharmaceuticals, Biotechnology & Life Sciences" | 380132       | 
+| Brazil       | Capital Goods                                    | 167578       | 
+| Luxembourg   | Materials                                        | 167007       | 
+| South Korea  | "Food, Beverage & Tobacco"                       | 140993       | 
+| Netherlands  | Chemicals                                        | 60806        | 
+| India        | "Mining - Iron, Aluminum, Other Metals"          | 23873        | 
+| Taiwan       | Technology Hardware & Equipment                  | 19367        | 
 
 ### 6. The trend of carbon footprints (PCFs) over the years
 
@@ -207,4 +215,9 @@ This report aims to analyze carbon emissions to examine the carbon footprint acr
 
 The most industry group which contribute the most to carbon emissions is **Electrical Equipment and Machinery**. In top 5 of products, Electrical Equipment and Machinery has 4 products contribute the most to carbon emissions (Wind Turbine). After that is **Automobiles & Components** with Land Cruiser Prado. FJ Cruiser. Dyna trucks. Toyoace.IMV def unit. Although Automobiles & Components in the second, the total carbon is 2,076,022 while Electrical Equipment and Machinery is 9,801,558 (4.7 times higher), even higher than the total carbon of all industry groups on top 10
 
+Gamesa Corporación Tecnológica, S.A company in Electrical Equipment and Machinery industry is the company with the highest contribution to carbon emissions. After that, Automobiles & Components industry has 3 companies in top 5. Clearly, most of products which contribute a lot of carbon emissions are from heavy industry.
+
+In general, half of countries in top 10 countries with the highest contribution to carbon emissions in Europe and they also focus on heavy industry (Electrical Equipment and Machinery ,  Automobiles & Components, Materials, Chemicals) with Spain is the frist one. Beside that, Asia developed countries also on the list including Japan (Automobiles & Components), South Korea ("Food, Beverage & Tobacco"), India ("Mining - Iron, Aluminum, Other Metals") and Taiwan (Technology Hardware & Equipment. However, Electrical Equipment and Machinery and Automobiles & Components in Spain and Germany accounted for the largest proportion compared to the remaining industries (Spain: 9785971, Germany: 1744983)
+
+Although the carbon emissions is really high, in the positive way, all countries are trying to reduce through each years. 2015 is the year had the highest contribution to carbon emissions with 10840415. However, after 1 year, in 2016, this number reduced dramatically about 9200000 (from 10840415 to 1640182) and continusly reduce until 2017 (only 340271). This proves that industries are paying more attention to the environment and trying to minimize the amount of carbon emissions released into the environment.
 
